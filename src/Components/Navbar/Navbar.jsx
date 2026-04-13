@@ -5,7 +5,7 @@ import { FaChartBar, FaClock, FaHome } from 'react-icons/fa';
 
 const Navbar = () => {
     return (
-        <div className='shadow-sm'>
+        <div className='bg-white shadow-sm'>
             <div className='flex justify-between container mx-auto py-3'>
                 <div>
                     <img src={logo} alt="Keen Keeper" />

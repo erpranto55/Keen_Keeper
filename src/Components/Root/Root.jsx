@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 const Root = () => {
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-[#F8FAFC] min-h-screen">
       <Navbar />
       <Outlet />
     </div>
