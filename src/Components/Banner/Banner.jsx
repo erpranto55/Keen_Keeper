@@ -1,6 +1,12 @@
 import { FaPlus } from "react-icons/fa";
 
-const Banner = () => {
+const Banner = ({ friends }) => {
+
+    const total = friends.length;
+
+    const onTrack = friends.filter(f => f.status === "On-Track").length;
+    const almostDue = friends.filter(f => f.status === "Almost Due").length;
+    const overdue = friends.filter(f => f.status === "Overdue").length;
     return (
         <div className="text-center py-12 px-4">
 
@@ -19,17 +25,17 @@ const Banner = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10 max-w-[80%] mx-auto">
 
                 <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h2 className="text-3xl font-semibold text-[#244D3F]">10</h2>
+                    <h2 className="text-3xl font-semibold text-[#244D3F]">{total}</h2>
                     <p className="text-gray-500 ">Total Friends</p>
                 </div>
 
                 <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h2 className="text-3xl font-semibold text-[#244D3F]">3</h2>
+                    <h2 className="text-3xl font-semibold text-[#244D3F]">{onTrack}</h2>
                     <p className="text-gray-500 ">On Track</p>
                 </div>
 
                 <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h2 className="text-3xl font-semibold text-[#244D3F]">6</h2>
+                    <h2 className="text-3xl font-semibold text-[#244D3F]">{almostDue + overdue}</h2>
                     <p className="text-gray-500 ">Need Attention</p>
                 </div>
 
@@ -38,6 +44,7 @@ const Banner = () => {
                     <p className="text-gray-500 ">Interactions This Month</p>
                 </div>
             </div>
+            <div className="max-w-5xl mx-auto mt-10 border-t border-gray-200"></div>
         </div>
     );
 };
