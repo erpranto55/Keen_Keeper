@@ -7,8 +7,8 @@ function App() {
   return (
     <>
       <div className="bg-white min-h-screen"  >
-        <Navbar />
-        <Outlet />
+        {/* <Navbar /> */}
+        {/* <Outlet /> */}
       </div>
     </>
   )

@@ -3,9 +3,11 @@ import { Outlet } from "react-router-dom";
 
 const Root = () => {
   return (
-    <div className="bg-[#F8FAFC] min-h-screen">
+    <div className="bg-[#F8FAFC]">
       <Navbar />
-      <Outlet />
+      <div className="min-h-[calc(100vh-80px)]">
+        <Outlet />
+      </div>
     </div>
   );
 };

@@ -9,6 +9,9 @@ import {
 
 import Root from './Components/Root/Root';
 import Home from './Components/Home/Home';
+import FriendDetails from './Components/FriendDetails/FriendDetails';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Dummy pages 
 const router = createBrowserRouter([
@@ -30,7 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/friend/:id",
-        element: <h1>Friend Details Page</h1>
+        element: <FriendDetails />
       },
     ],
   },
@@ -39,5 +42,6 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
+    <ToastContainer position="top-right" autoClose={2000} />
   </StrictMode>,
 )
