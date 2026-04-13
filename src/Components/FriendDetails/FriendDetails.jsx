@@ -7,6 +7,7 @@ import {
     FaClock,
     FaArchive,
     FaTrash,
+    FaHistory,
 } from "react-icons/fa";
 import { toast } from "react-toastify";
 
@@ -31,17 +32,25 @@ const FriendDetails = () => {
         const newEntry = {
             id: Date.now(),
             type,
-            title: `${type} with ${friend.name}`,
+            name: friend.name,
             date: new Date().toLocaleDateString(),
         };
 
-        setTimeline([newEntry, ...timeline]);
+        // get old data
+        const existing = JSON.parse(localStorage.getItem("timeline")) || [];
 
-        toast.success(`${type} added!`, {
-            position: "top-right",
-            autoClose: 2000,
-        });
+        // add new
+        const updated = [newEntry, ...existing];
+
+        // save
+        localStorage.setItem("timeline", JSON.stringify(updated));
+
+        // update state (for current page)
+        setTimeline(updated);
+
+        toast.success(`${type} added!`);
     };
+
 
     if (!friend) {
         return (
@@ -221,8 +230,8 @@ const FriendDetails = () => {
                             <h3 className="font-semibold text-gray-700">
                                 Recent Interactions
                             </h3>
-                            <button className="text-sm border px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100">
-                                Full History
+                            <button className="text-sm border px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100 flex items-center gap-2">
+                                <FaHistory /> Full History
                             </button>
                         </div>
 
@@ -247,7 +256,7 @@ const FriendDetails = () => {
 
                                         <div>
                                             <p className="text-sm font-medium text-gray-700">
-                                                {item.title}
+                                                {item.type} with {item.name}
                                             </p>
                                             <p className="text-xs text-gray-400">
                                                 Interaction recorded

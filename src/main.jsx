@@ -12,6 +12,7 @@ import Home from './Components/Home/Home';
 import FriendDetails from './Components/FriendDetails/FriendDetails';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Timeline from './Components/Timeline/Timeline';
 
 // Dummy pages 
 const router = createBrowserRouter([
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/timeline",
-        element: <h1>Timeline Page</h1>
+        element: <Timeline />
       },
       {
         path: "/stats",
