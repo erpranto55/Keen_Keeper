@@ -4,14 +4,6 @@ KeenKeeper is a modern React-based web application designed to help users mainta
 
 ---
 
-## 📸 Screenshots
-
-### 🏠 Home Page
-
-![Home Page](./Home.png)
-
----
-
 ## Live Link
 
 ## [KeenKeeper](https://keen-keeper-gules.vercel.app/)
@@ -175,3 +167,21 @@ Add:
 ## License
 
 This project is for educational purposes.<br>
+
+---
+
+## Screenshots
+
+### Home Page
+
+![Home Page](./screenshots/Home.png)
+
+###  Friend Details
+![Details](./screenshots/Details.png)
+
+###  Timeline
+![Timeline](./screenshots/Timeline.png)
+
+###  Stats
+![Stats](./screenshots/Stats.png)
+
