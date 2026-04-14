@@ -13,8 +13,8 @@ import FriendDetails from './Components/FriendDetails/FriendDetails';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Timeline from './Components/Timeline/Timeline';
+import Stats from './Components/Stats/Stats';
 
-// Dummy pages 
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/stats",
-        element: <h1>Stats Page</h1>
+        element: <Stats />
       },
       {
         path: "/friend/:id",

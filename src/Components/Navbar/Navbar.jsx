@@ -10,7 +10,7 @@ const Navbar = () => {
                 <div>
                     <img src={logo} alt="Keen Keeper" />
                 </div>
-                <div className="flex gap-6">
+                <div className="flex gap-2 md:gap-6">
 
                     <NavLink
                         to="/"
