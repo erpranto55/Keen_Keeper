@@ -44,14 +44,14 @@ const Stats = () => {
     }, []);
 
     const COLORS = [
-        "#7C3AED", 
-        "#244D3F", 
-        "#22C55E", 
+        "#7C3AED",
+        "#244D3F",
+        "#22C55E",
     ];
 
     return (
-        <div className="bg-[#F8FAFC] min-h-screen py-10">
-            <div className="max-w-5xl mx-auto px-4">
+        <div className="bg-[#F8FAFC] py-10">
+            <div className="max-w-[80%] mx-auto px-4">
 
                 <h1 className="text-5xl font-bold text-[#1F2937] mb-6">
                     Friendship Analytics
@@ -59,20 +59,20 @@ const Stats = () => {
 
                 <div className="bg-white rounded-xl shadow-sm p-6">
 
-                    <h3 className="text-sm text-[#244D3F] mb-4">
+                    <h3 className="text-[#244D3F] mb-4 font-medium text-xl">
                         By Interaction Type
                     </h3>
 
                     <div className="flex flex-col items-center justify-center">
 
-                        <div className="w-65 h-65">
-                            <ResponsiveContainer>
+                        <div className="w-110 h-110">
+                            <ResponsiveContainer width="100%" height="100%">
                                 <PieChart>
                                     <Pie
                                         data={data}
                                         dataKey="value"
-                                        innerRadius={70}
-                                        outerRadius={100}
+                                        innerRadius={110}
+                                        outerRadius={160}
                                         paddingAngle={5}
                                     >
                                         {data.map((entry, index) => (
@@ -86,7 +86,7 @@ const Stats = () => {
                             </ResponsiveContainer>
                         </div>
 
-                        <div className="flex gap-6 mt-4 text-sm text-gray-500">
+                        <div className="flex gap-6 mt-4 text-gray-500 text-2xl">
 
                             <div className="flex items-center gap-2">
                                 <span className="w-3 h-3 rounded-full bg-[#7C3AED]"></span>
