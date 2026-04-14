@@ -1,74 +1,87 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import {
-  FaPhone,
-  FaCommentDots,
-  FaVideo,
+    FaPhone,
+    FaCommentDots,
+    FaVideo,
+    FaTrash,
 } from "react-icons/fa";
 
 const Timeline = () => {
-  const { id } = useParams();
+    const { id } = useParams();
 
-  const [data] = useState(() => {
-    return JSON.parse(localStorage.getItem("timeline")) || [];
-  });
+    const [data, setData] = useState(() => {
+        return JSON.parse(localStorage.getItem("timeline")) || [];
+    });
 
-  const filteredData = id
-    ? data.filter((item) => String(item.friendId) === String(id))
-    : data;
+    const filteredData = id
+        ? data.filter((item) => String(item.friendId) === String(id))
+        : data;
 
-  const getIcon = (type) => {
-    if (type === "Call") return <FaPhone />;
-    if (type === "Text") return <FaCommentDots />;
-    if (type === "Video") return <FaVideo />;
-    return null;
-  };
+    const handleDelete = (deleteId) => {
+        const updated = data.filter((item) => item.id !== deleteId);
+        setData(updated);
+        localStorage.setItem("timeline", JSON.stringify(updated));
+    };
 
-  return (
-    <div className="py-10">
-      <div className="max-w-4xl mx-auto px-4">
+    const getIcon = (type) => {
+        if (type === "Call") return <FaPhone />;
+        if (type === "Text") return <FaCommentDots />;
+        if (type === "Video") return <FaVideo />;
+        return null;
+    };
 
-        <h1 className="text-3xl font-bold text-gray-800 mb-6">
-          Timeline
-        </h1>
+    return (
+        <div className="py-10">
+            <div className="max-w-4xl mx-auto px-4">
 
-        <div className="flex flex-col gap-4">
+                <h1 className="text-3xl font-bold text-gray-800 mb-6">
+                    Timeline
+                </h1>
 
-          {filteredData.length === 0 ? (
-            <p className="text-gray-400 text-sm">
-              No interactions yet
-            </p>
-          ) : (
-            filteredData.map((item) => (
-              <div
-                key={item.id}
-                className="bg-white p-4 rounded-xl shadow-sm flex items-center gap-4"
-              >
+                <div className="flex flex-col gap-4">
 
-                <div className="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full text-gray-600">
-                  {getIcon(item.type)}
+                    {filteredData.length === 0 ? (
+                        <p className="text-gray-400 text-sm">
+                            No interactions yet
+                        </p>
+                    ) : (
+                        filteredData.map((item) => (
+                            <div
+                                key={item.id}
+                                className="bg-white p-4 rounded-xl shadow-sm flex items-center gap-4"
+                            >
+
+                                <div className="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full text-gray-600">
+                                    {getIcon(item.type)}
+                                </div>
+
+                                <div>
+                                    <p className="text-sm font-medium text-gray-700">
+                                        {item.type} with{" "}
+                                        <span className="font-semibold">
+                                            {item.name}
+                                        </span>
+                                    </p>
+                                    <p className="text-xs text-gray-400">
+                                        {item.date}
+                                    </p>
+                                </div>
+                                <button
+                                    onClick={() => handleDelete(item.id)}
+                                    className="text-red-500 text-sm ml-auto"
+                                >
+                                    <FaTrash/>
+                                </button>
+
+                            </div>
+                        ))
+                    )}
+
                 </div>
-
-                <div>
-                  <p className="text-sm font-medium text-gray-700">
-                    {item.type} with{" "}
-                    <span className="font-semibold">
-                      {item.name}
-                    </span>
-                  </p>
-                  <p className="text-xs text-gray-400">
-                    {item.date}
-                  </p>
-                </div>
-
-              </div>
-            ))
-          )}
-
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default Timeline;

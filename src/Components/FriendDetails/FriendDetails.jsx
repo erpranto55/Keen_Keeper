@@ -28,6 +28,7 @@ const FriendDetails = () => {
 
     useEffect(() => {
         const stored = JSON.parse(localStorage.getItem("timeline")) || [];
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setTimeline(stored);
     }, []);
 
@@ -53,6 +54,11 @@ const FriendDetails = () => {
         toast.success(`${type} added!`);
     };
 
+    const handleDelete = (id) => {
+        const updated = timeline.filter((item) => item.id !== id);
+        setTimeline(updated);
+        localStorage.setItem("timeline", JSON.stringify(updated));
+    };
 
     if (!friend) {
         return (
@@ -80,7 +86,7 @@ const FriendDetails = () => {
                 : "bg-[#244D3F] text-white";
 
     const filteredTimeline = timeline.filter(
-        (item) => item.name === friend?.name
+        (item) => item.friendId === friend.id
     );
 
     return (
@@ -254,10 +260,8 @@ const FriendDetails = () => {
                                     key={item.id}
                                     className="flex justify-between items-center py-3 border-b last:border-none"
                                 >
-
                                     <div className="flex items-center gap-3">
-
-                                        <div className="text-gray-500 text-sm">
+                                        <div className="text-gray-500">
                                             {item.type === "Call" && <FaPhone />}
                                             {item.type === "Text" && <FaCommentDots />}
                                             {item.type === "Video" && <FaVideo />}
@@ -271,13 +275,20 @@ const FriendDetails = () => {
                                                 Interaction recorded
                                             </p>
                                         </div>
-
                                     </div>
 
-                                    <span className="text-xs text-gray-400">
-                                        {item.date}
-                                    </span>
+                                    <div className="flex items-center gap-3">
+                                        <span className="text-xs text-gray-400">
+                                            {item.date}
+                                        </span>
 
+                                        <button
+                                            onClick={() => handleDelete(item.id)}
+                                            className="text-red-500 text-sm"
+                                        >
+                                            <FaTrash />
+                                        </button>
+                                    </div>
                                 </div>
                             ))
                         )}
