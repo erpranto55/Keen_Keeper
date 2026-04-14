@@ -5,7 +5,7 @@ import Friends from "../Friends/Friends";
 const Home = () => {
     const [friends, setFriends] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    
     useEffect(() => {
         fetch("/friends.json")
             .then(res => res.json())

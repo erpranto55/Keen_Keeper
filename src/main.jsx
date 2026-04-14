@@ -14,12 +14,14 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Timeline from './Components/Timeline/Timeline';
 import Stats from './Components/Stats/Stats';
+import ErrorPage from './Pages/ErrorPage';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     children: [
+
       {
         path: "/",
         element: <Home />
@@ -39,8 +41,13 @@ const router = createBrowserRouter([
       {
         path: "/timeline/:id",
         element: <Timeline />
-      }
+      },
+
     ],
+  },
+  {
+    path: "*",
+    element: <ErrorPage />
   },
 ]);
 
