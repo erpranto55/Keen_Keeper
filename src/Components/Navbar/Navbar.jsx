@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import logo from '../../assets/logo.png'
 import { FaChartBar, FaClock, FaHome } from 'react-icons/fa';
 
@@ -7,9 +8,9 @@ const Navbar = () => {
     return (
         <div className='bg-white shadow-sm'>
             <div className='flex justify-between container mx-auto py-3'>
-                <div>
+                <Link to="/">
                     <img src={logo} alt="Keen Keeper" />
-                </div>
+                </Link>
                 <div className="flex gap-2 md:gap-6">
 
                     <NavLink

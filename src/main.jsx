@@ -36,6 +36,10 @@ const router = createBrowserRouter([
         path: "/friend/:id",
         element: <FriendDetails />
       },
+      {
+        path: "/timeline/:id",
+        element: <Timeline />
+      }
     ],
   },
 ]);

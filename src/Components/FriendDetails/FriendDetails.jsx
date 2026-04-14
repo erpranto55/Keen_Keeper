@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
     FaPhone,
@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 
 const FriendDetails = () => {
     const { id } = useParams();
-
+    const navigate = useNavigate();
     const [friend, setFriend] = useState(null);
     const [timeline, setTimeline] = useState([]);
 
@@ -26,6 +26,11 @@ const FriendDetails = () => {
             });
     }, [id]);
 
+    useEffect(() => {
+        const stored = JSON.parse(localStorage.getItem("timeline")) || [];
+        setTimeline(stored);
+    }, []);
+
     const handleInteraction = (type) => {
         if (!friend) return;
 
@@ -33,19 +38,16 @@ const FriendDetails = () => {
             id: Date.now(),
             type,
             name: friend.name,
+            friendId: friend.id,
             date: new Date().toLocaleDateString(),
         };
 
-        // get old data
         const existing = JSON.parse(localStorage.getItem("timeline")) || [];
 
-        // add new
         const updated = [newEntry, ...existing];
 
-        // save
         localStorage.setItem("timeline", JSON.stringify(updated));
 
-        // update state (for current page)
         setTimeline(updated);
 
         toast.success(`${type} added!`);
@@ -76,6 +78,10 @@ const FriendDetails = () => {
             : status === "Almost Due"
                 ? "bg-yellow-100 text-yellow-600"
                 : "bg-[#244D3F] text-white";
+
+    const filteredTimeline = timeline.filter(
+        (item) => item.name === friend?.name
+    );
 
     return (
         <div className="bg-[#F8FAFC] min-h-screen py-10">
@@ -230,17 +236,20 @@ const FriendDetails = () => {
                             <h3 className="font-semibold text-gray-700">
                                 Recent Interactions
                             </h3>
-                            <button className="text-sm border px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100 flex items-center gap-2">
+                            <button
+                                onClick={() => navigate(`/timeline/${friend.id}`)}
+                                className="text-sm border px-3 py-1 rounded-md flex items-center gap-2 text-gray-600 hover:bg-gray-100"
+                            >
                                 <FaHistory /> Full History
                             </button>
                         </div>
 
-                        {timeline.length === 0 ? (
+                        {filteredTimeline.length === 0 ? (
                             <p className="text-gray-500 text-sm">
                                 No interactions yet
                             </p>
                         ) : (
-                            timeline.map((item) => (
+                            filteredTimeline.map((item) => (
                                 <div
                                     key={item.id}
                                     className="flex justify-between items-center py-3 border-b last:border-none"
