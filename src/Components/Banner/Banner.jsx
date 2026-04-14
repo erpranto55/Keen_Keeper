@@ -63,7 +63,7 @@ const Banner = ({ friends }) => {
                     <p className="text-gray-500 ">Interactions This Month</p>
                 </div>
             </div>
-            <div className="max-w-5xl mx-auto mt-10 border-t border-gray-200"></div>
+            <div className="max-w-5xl mx-auto mt-25 border-t border-gray-200 "></div>
         </div>
     );
 };
