@@ -6,6 +6,7 @@ import {
     FaVideo,
     FaTrash,
 } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const Timeline = () => {
     const { id } = useParams();
@@ -22,6 +23,7 @@ const Timeline = () => {
         const updated = data.filter((item) => item.id !== deleteId);
         setData(updated);
         localStorage.setItem("timeline", JSON.stringify(updated));
+        toast.error("Interaction deleted");
     };
 
     const getIcon = (type) => {

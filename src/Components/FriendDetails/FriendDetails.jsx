@@ -58,6 +58,7 @@ const FriendDetails = () => {
         const updated = timeline.filter((item) => item.id !== id);
         setTimeline(updated);
         localStorage.setItem("timeline", JSON.stringify(updated));
+        toast.error("Interaction deleted");
     };
 
     if (!friend) {

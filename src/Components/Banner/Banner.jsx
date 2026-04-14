@@ -1,12 +1,29 @@
 import { FaPlus } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
 const Banner = ({ friends }) => {
-
+    const [timeline, setTimeline] = useState([]);
     const total = friends.length;
+
+    useEffect(() => {
+        const stored = JSON.parse(localStorage.getItem("timeline")) || [];
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setTimeline(stored);
+    }, []);
 
     const onTrack = friends.filter(f => f.status === "On-Track").length;
     const almostDue = friends.filter(f => f.status === "Almost Due").length;
     const overdue = friends.filter(f => f.status === "Overdue").length;
+    const currentMonth = new Date().getMonth();
+    const currentYear = new Date().getFullYear();
+    const monthlyInteractions = timeline.filter((item) => {
+        const date = new Date(item.date);
+        return (
+            date.getMonth() === currentMonth &&
+            date.getFullYear() === currentYear
+        );
+    }).length;
+
     return (
         <div className="text-center py-12 px-4">
 
@@ -40,7 +57,9 @@ const Banner = ({ friends }) => {
                 </div>
 
                 <div className="bg-white p-6 rounded-lg shadow-sm">
-                    <h2 className="text-3xl font-semibold text-[#244D3F]">12</h2>
+                    <h2 className="text-3xl font-semibold text-[#244D3F]">
+                        {monthlyInteractions}
+                    </h2>
                     <p className="text-gray-500 ">Interactions This Month</p>
                 </div>
             </div>
