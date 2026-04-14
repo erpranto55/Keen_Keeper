@@ -3,9 +3,18 @@
 KeenKeeper is a modern React-based web application designed to help users maintain meaningful relationships by tracking interactions like calls, texts, and video chats.
 
 ---
-## Live Link
-[KeenKeeper](https://keen-keeper-gules.vercel.app/)
+
+## 📸 Screenshots
+
+### 🏠 Home Page
+
+![Home Page](./Home.png)
+
 ---
+
+## Live Link
+
+## [KeenKeeper](https://keen-keeper-gules.vercel.app/)
 
 ## Features
 
@@ -148,9 +157,10 @@ Add:
 
 ## Author
 
-**ER Pranto**
-[LinkedIn](https://www.linkedin.com/in/erpranto55/)
-[Facebook](https://www.facebook.com/erpranto55)
+**ER Pranto**<br>
+[LinkedIn](https://www.linkedin.com/in/erpranto55/) <br>
+[Facebook](https://www.facebook.com/erpranto55)<br>
+
 ---
 
 ## Future Improvements
