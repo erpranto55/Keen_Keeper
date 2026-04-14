@@ -149,7 +149,8 @@ Add:
 ## Author
 
 **ER Pranto**
-
+[LinkedIn](https://www.linkedin.com/in/erpranto55/)
+[Facebook](https://www.facebook.com/erpranto55)
 ---
 
 ## Future Improvements
